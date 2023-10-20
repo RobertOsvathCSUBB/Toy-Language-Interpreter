@@ -18,7 +18,7 @@ public class VarDeclaration implements IStatement
 
     public String toString()
     {
-        return this.type.toString() + " " + this.name + ";";
+        return this.type.toString() + " " + this.name + "";
     }
 
     public PrgState execute(PrgState state) throws MyException

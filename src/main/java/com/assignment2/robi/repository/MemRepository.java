@@ -16,8 +16,13 @@ public class MemRepository implements IRepository
         this.states.add(state);
     }
 
+    public PrgState getPrgByIndex(Integer index)
+    {
+        return this.states.get(index);
+    }
+
     public PrgState getCrtPrg()
     {
-        return this.states.get(0);
+        return new PrgState(null, null, null, null);
     }
 }

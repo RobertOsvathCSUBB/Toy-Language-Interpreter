@@ -14,9 +14,9 @@ public class Controller
         this.repo = r;
     }
 
-    public PrgState getProgramState()
+    public PrgState getProgramStateByIndex(Integer index)
     {
-        return this.repo.getCrtPrg();
+        return this.repo.getPrgByIndex(index);
     }
 
     public PrgState oneStep(PrgState state) throws MyException
@@ -25,18 +25,19 @@ public class Controller
         if (stk.isEmpty())
             throw new MyException("Stack is empty!");
         IStatement crtStmt = stk.pop();
-        return crtStmt.execute(state);
+        PrgState newState = crtStmt.execute(state);
+        System.out.println(newState.toString());
+        return newState;
     }
 
-    public void allStep()
+    public void allStep(Integer index)
     {
-        PrgState state = this.getProgramState();
+        PrgState state = this.getProgramStateByIndex(index);
         System.out.println(state.toString());
         try {
             while (!state.getStack().isEmpty())
             {
                 this.oneStep(state);
-                System.out.println(state.toString());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -29,6 +29,6 @@ public class PrintStatement implements IStatement {
 
     public String toString()
     {
-        return "print(" + this.exp.toString() + ");";
+        return "print(" + this.exp.toString() + ")";
     }
 }

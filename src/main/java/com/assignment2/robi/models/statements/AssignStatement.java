@@ -18,7 +18,7 @@ public class AssignStatement implements IStatement
 
     public String toString()
     {
-        return this.id + " = " + this.exp.toString() + ";";
+        return this.id + " = " + this.exp.toString() + "";
     }
 
     public PrgState execute(PrgState state) throws MyException

@@ -32,7 +32,7 @@ public class MyStack<T> implements IStack<T>
             aux.push(elem);
         String res = "{ ";
         while (!aux.isEmpty())
-            res += aux.pop().toString() + " ";
+            res += aux.pop().toString() + "; ";
         res+= "}";
         return res;
     }
