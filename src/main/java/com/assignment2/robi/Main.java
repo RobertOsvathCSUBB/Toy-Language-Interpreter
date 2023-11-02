@@ -8,7 +8,6 @@ import com.assignment2.robi.models.statements.AssignStatement;
 import com.assignment2.robi.models.statements.CompStatement;
 import com.assignment2.robi.models.statements.IStatement;
 import com.assignment2.robi.models.statements.IfStatement;
-import com.assignment2.robi.models.statements.NOPStatement;
 import com.assignment2.robi.models.statements.PrintStatement;
 import com.assignment2.robi.models.statements.VarDeclaration;
 import com.assignment2.robi.models.types.BoolType;
@@ -17,10 +16,10 @@ import com.assignment2.robi.models.values.BoolValue;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.IntValue;
 import com.assignment2.robi.models.expressions.ArithExpression;
-import com.assignment2.robi.models.expressions.LogicExpression;
 import com.assignment2.robi.models.expressions.ValueExpression;
 import com.assignment2.robi.models.expressions.VarExpression;
 import com.assignment2.robi.models.ADTs.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args)
@@ -82,6 +81,7 @@ public class Main {
         PrgState state1 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), program1);
         PrgState state2 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), program2);
         PrgState state3 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), program3);
+
         IRepository repo = new MemRepository();
         repo.add(state1);
         repo.add(state2);

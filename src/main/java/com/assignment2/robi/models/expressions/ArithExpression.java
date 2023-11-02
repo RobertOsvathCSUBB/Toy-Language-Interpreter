@@ -5,7 +5,7 @@ import com.assignment2.robi.models.types.IntType;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.IntValue;
 
-public class ArithExpression implements IExpression 
+public class ArithExpression implements IExpression
 {
     private IExpression left;
     private IExpression right;
@@ -17,6 +17,21 @@ public class ArithExpression implements IExpression
         this.right = right;
         this.op = op;
     }
+
+    // ask about this in the lab
+    // @Override
+    // public Object clone()
+    // {
+    //     ArithExpression copy = null;
+    //     try {
+    //         return super.clone();
+    //     }
+    //     catch (CloneNotSupportedException e) {
+    //         copy = new ArithExpression(this.left, this.right, this.op);
+    //     }
+    //     copy.left = (IExpression)this.left.clone();
+    //     copy.right = (IExpression)this.right.clone();
+    // }
 
     public IValue evaluate(IMap<String, IValue> table) throws MyException
     {

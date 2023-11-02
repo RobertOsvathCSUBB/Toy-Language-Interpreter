@@ -5,15 +5,20 @@ import com.assignment2.robi.models.types.IntType;
 public class IntValue implements IValue 
 {
     private Integer value;
-    
-    public IntValue()
-    {
-        this.value = 0;
-    }
 
     public IntValue(int value)
     {
         this.value = value;
+    }
+
+    @Override
+    public Object clone()
+    {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new IntValue(this.value);
+        }
     }
 
     public Integer getValue()

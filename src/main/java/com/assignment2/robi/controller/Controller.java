@@ -14,9 +14,15 @@ public class Controller
         this.repo = r;
     }
 
+    public void setLogFile(String path)
+    {
+        this.repo.setLogFile(path);
+    }
+
     public PrgState getProgramStateByIndex(Integer index)
     {
-        return this.repo.getPrgByIndex(index);
+        this.repo.setCrtPrg(index);
+        return this.repo.getCrtPrg();
     }
 
     public PrgState oneStep(PrgState state) throws MyException
@@ -27,6 +33,7 @@ public class Controller
         IStatement crtStmt = stk.pop();
         PrgState newState = crtStmt.execute(state);
         System.out.println(newState.toString());
+        this.repo.logPrgStateExec();
         return newState;
     }
 

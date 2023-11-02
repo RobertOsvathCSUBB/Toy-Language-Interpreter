@@ -15,12 +15,17 @@ public class View
 
     public void run()
     {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input the log file of the program:");
+        String logFilePath = scanner.nextLine();
+        this.controller.setLogFile(logFilePath);
+        System.out.println();
+
         Integer inputPrgChoice;
         System.out.println("Choose a program to run: ");
         System.out.println("1. int v; v=2; Print(v)");
         System.out.println("2. int a; a=2+3*5; int b; b=a+1; Print(b)");
         System.out.println("3. bool a; int v; a=true; If (a) Then {v=2} Else {v=3}; Print(v)");
-        Scanner scanner = new Scanner(System.in);
         inputPrgChoice = scanner.nextInt();
 
         System.out.println("\n");
@@ -48,7 +53,7 @@ public class View
                     switch (cont)
                     {
                         case 0:
-                            break;
+                            System.exit(0);
                         case 1:
                             continue;
                         default:

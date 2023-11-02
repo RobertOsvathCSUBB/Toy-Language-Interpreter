@@ -1,0 +1,8 @@
+ExeStack:
+{ }
+SymTable:
+{ a -> true; v -> 2; }
+Out:
+[ 2, ]
+
+

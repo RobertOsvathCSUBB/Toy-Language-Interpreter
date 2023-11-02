@@ -5,15 +5,20 @@ import com.assignment2.robi.models.types.BoolType;
 public class BoolValue implements IValue 
 {
     private Boolean value;
-    
-    public BoolValue()
-    {
-        this.value = false;
-    }
 
     public BoolValue(Boolean value)
     {
         this.value = value;
+    }
+
+    @Override
+    public Object clone()
+    {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new BoolValue(this.value);
+        }
     }
 
     public Boolean getValue()
