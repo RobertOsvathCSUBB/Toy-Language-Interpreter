@@ -35,4 +35,10 @@ public class BoolValue implements IValue
     {
         return new BoolType();
     }
+
+    @Override
+    public boolean equals(Object another)
+    {
+        return this.value.equals(((BoolValue)another).getValue());
+    }
 }

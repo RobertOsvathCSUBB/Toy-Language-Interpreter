@@ -1,8 +1,136 @@
 ExeStack:
+{ string varf; varf = test.in | openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ }
+Out:
+[ ]
+
+
+ExeStack:
+{ varf = test.in | openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> ; }
+Out:
+[ ]
+
+
+ExeStack:
+{ varf = test.in; openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> ; }
+Out:
+[ ]
+
+
+ExeStack:
+{ openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; }
+Out:
+[ ]
+
+
+ExeStack:
+{ openRFile(varf); int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; }
+Out:
+[ ]
+
+
+ExeStack:
+{ int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; }
+Out:
+[ ]
+
+
+ExeStack:
+{ int varc; readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; }
+Out:
+[ ]
+
+
+ExeStack:
+{ readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ readFile(varf, varc); print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 15; }
+Out:
+[ ]
+
+
+ExeStack:
+{ print(varc); readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 15; }
+Out:
+[ ]
+
+
+ExeStack:
+{ readFile(varf, varc) | print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 15; }
+Out:
+[ 15, ]
+
+
+ExeStack:
+{ readFile(varf, varc); print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 15; }
+Out:
+[ 15, ]
+
+
+ExeStack:
+{ print(varc) | closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 50; }
+Out:
+[ 15, ]
+
+
+ExeStack:
+{ print(varc); closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 50; }
+Out:
+[ 15, ]
+
+
+ExeStack:
+{ closeRFile(varf); }
+SymTable:
+{ varf -> test.in; varc -> 50; }
+Out:
+[ 15, 50, ]
+
+
+ExeStack:
 { }
 SymTable:
-{ a -> true; v -> 2; }
+{ varf -> test.in; varc -> 50; }
 Out:
-[ 2, ]
+[ 15, 50, ]
 
 

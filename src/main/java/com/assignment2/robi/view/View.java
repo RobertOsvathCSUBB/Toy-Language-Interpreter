@@ -23,10 +23,17 @@ public class View
 
         Integer inputPrgChoice;
         System.out.println("Choose a program to run: ");
-        System.out.println("1. int v; v=2; Print(v)");
-        System.out.println("2. int a; a=2+3*5; int b; b=a+1; Print(b)");
-        System.out.println("3. bool a; int v; a=true; If (a) Then {v=2} Else {v=3}; Print(v)");
+        System.out.println("1. int v; v=2; Print(v);");
+        System.out.println("2. int a; a=2+3*5; int b; b=a+1; Print(b);");
+        System.out.println("3. bool a; int v; a=true; If (a) Then {v=2} Else {v=3}; Print(v);");
+        System.out.println("4. string varf; varf = 'test.in'; openRFile(varf); int varc; readFile(varf, varc); print(varc); readFile(varf, varc); print(varc); closeRFile(varf);");
         inputPrgChoice = scanner.nextInt();
+
+        if (inputPrgChoice < 1 || inputPrgChoice > 4)
+        {
+            System.out.println("Invalid choice!");
+            System.exit(0);
+        }
 
         System.out.println("\n");
         

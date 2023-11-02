@@ -5,21 +5,26 @@ import com.assignment2.robi.repository.MemRepository;
 import com.assignment2.robi.view.View;
 import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.statements.AssignStatement;
+import com.assignment2.robi.models.statements.CloseStatement;
 import com.assignment2.robi.models.statements.CompStatement;
 import com.assignment2.robi.models.statements.IStatement;
 import com.assignment2.robi.models.statements.IfStatement;
+import com.assignment2.robi.models.statements.OpenStatement;
 import com.assignment2.robi.models.statements.PrintStatement;
+import com.assignment2.robi.models.statements.ReadStatement;
 import com.assignment2.robi.models.statements.VarDeclaration;
 import com.assignment2.robi.models.types.BoolType;
 import com.assignment2.robi.models.types.IntType;
+import com.assignment2.robi.models.types.StringType;
 import com.assignment2.robi.models.values.BoolValue;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.IntValue;
+import com.assignment2.robi.models.values.StringValue;
 import com.assignment2.robi.models.expressions.ArithExpression;
 import com.assignment2.robi.models.expressions.ValueExpression;
 import com.assignment2.robi.models.expressions.VarExpression;
 import com.assignment2.robi.models.ADTs.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
 
 public class Main {
     public static void main(String[] args)
@@ -77,15 +82,43 @@ public class Main {
                 )
             )
         );
+
+        IStatement program4 = new CompStatement(
+            new VarDeclaration("varf", new StringType()),
+            new CompStatement(
+                new AssignStatement("varf", new ValueExpression(new StringValue("test.in"))),
+                new CompStatement(
+                    new OpenStatement(new VarExpression("varf")),
+                    new CompStatement(
+                        new VarDeclaration("varc", new IntType()),
+                        new CompStatement(
+                            new ReadStatement(new ValueExpression(new StringValue("varf")), "varc"),
+                            new CompStatement(
+                                new PrintStatement(new VarExpression("varc")),
+                                new CompStatement(
+                                    new ReadStatement(new ValueExpression(new StringValue("varf")), "varc"),
+                                    new CompStatement(
+                                        new PrintStatement(new VarExpression("varc")),
+                                        new CloseStatement(new ValueExpression(new StringValue("varf")))
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        );
         
-        PrgState state1 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), program1);
-        PrgState state2 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), program2);
-        PrgState state3 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), program3);
+        PrgState state1 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), program1);
+        PrgState state2 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), program2);
+        PrgState state3 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), program3);
+        PrgState state4 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), program4);
 
         IRepository repo = new MemRepository();
         repo.add(state1);
         repo.add(state2);
         repo.add(state3);
+        repo.add(state4);
         Controller ctrl = new Controller(repo);
         View view = new View(ctrl);
         view.run();

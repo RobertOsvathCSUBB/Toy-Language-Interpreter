@@ -2,19 +2,23 @@ package com.assignment2.robi.models.state;
 import com.assignment2.robi.models.statements.IStatement;
 import com.assignment2.robi.models.ADTs.*;
 import com.assignment2.robi.models.values.IValue;
+import com.assignment2.robi.models.values.StringValue;
+import java.io.BufferedReader;
 
 public class PrgState
 {
     private IStack<IStatement> exeStack;
     private IMap<String, IValue> symTable;
     private IList<IValue> out;
+    private IMap<StringValue, BufferedReader> fileTable;
     private IStatement originalPrg;
     
 
-    public PrgState(IStack<IStatement> stk, IMap<String, IValue> map, IList<IValue> out, IStatement prg) {
+    public PrgState(IStack<IStatement> stk, IMap<String, IValue> map, IList<IValue> out, IMap<StringValue, BufferedReader> ft, IStatement prg) {
         this.exeStack = stk;
         this.symTable = map;
         this.out = out;
+        this.fileTable = ft;
         this.originalPrg = prg;
         this.exeStack.push(prg);
     }
@@ -41,6 +45,14 @@ public class PrgState
 
     public void setOut(IList<IValue> out) {
         this.out = out;
+    }
+
+    public IMap<StringValue, BufferedReader> getFileTable() {
+        return this.fileTable;
+    }
+
+    public void setFileTable(IMap<StringValue, BufferedReader> ft) {
+        this.fileTable = ft;
     }
 
     public IStatement getOriginalPrg() {

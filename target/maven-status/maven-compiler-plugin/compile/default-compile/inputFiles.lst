@@ -10,7 +10,9 @@ C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\values\IValue.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\NOPStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\values\IntValue.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\values\StringValue.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\PrintStatement.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\ReadStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\exception\MyException.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\expressions\IExpression.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\ADTs\MyMap.java
@@ -25,6 +27,9 @@ C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\IfStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\ADTs\MyStack.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\repository\MemRepository.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\OpenStatement.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\CloseStatement.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\types\StringType.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\View.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\ADTs\IStack.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\values\BoolValue.java

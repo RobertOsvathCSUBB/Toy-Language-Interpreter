@@ -1,44 +1,43 @@
 package com.assignment2.robi.models.values;
 import com.assignment2.robi.models.types.IType;
-import com.assignment2.robi.models.types.IntType;
+import com.assignment2.robi.models.types.StringType;
 
-public class IntValue implements IValue 
+public class StringValue implements IValue 
 {
-    private Integer value;
+    private String value;
 
-    public IntValue(int value)
-    {
+    public StringValue(String value) {
         this.value = value;
     }
-
+    
     @Override
     public Object clone()
     {
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
-            return new IntValue(this.value);
+            return new StringValue(this.value);
         }
     }
 
-    public Integer getValue()
+    public String getValue()
     {
         return this.value;
     }
 
     public String toString()
     {
-        return Integer.toString(this.value);
+        return this.value;
     }
 
     public IType getType()
     {
-        return new IntType();
+        return new StringType();
     }
 
     @Override
     public boolean equals(Object another)
     {
-        return this.value.equals(((IntValue)another).getValue());
-    } 
+        return this.value.equals(((StringValue)another).getValue());
+    }
 }
