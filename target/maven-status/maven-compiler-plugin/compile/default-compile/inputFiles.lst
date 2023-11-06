@@ -22,6 +22,7 @@ C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\expressions\ArithExpression.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\RunExample.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\Main.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\expressions\RelationalExpression.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\state\PrgState.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\AssignStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\Interpreter.java
@@ -35,7 +36,6 @@ C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\OpenStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\CloseStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\types\StringType.java
-C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\View.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\ADTs\IStack.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\values\BoolValue.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\controller\Controller.java

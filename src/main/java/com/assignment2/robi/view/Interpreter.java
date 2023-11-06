@@ -1,12 +1,11 @@
 package com.assignment2.robi.view;
-
 import java.io.BufferedReader;
-
 import com.assignment2.robi.controller.Controller;
 import com.assignment2.robi.models.ADTs.MyList;
 import com.assignment2.robi.models.ADTs.MyMap;
 import com.assignment2.robi.models.ADTs.MyStack;
 import com.assignment2.robi.models.expressions.ArithExpression;
+import com.assignment2.robi.models.expressions.RelationalExpression;
 import com.assignment2.robi.models.expressions.ValueExpression;
 import com.assignment2.robi.models.expressions.VarExpression;
 import com.assignment2.robi.models.state.PrgState;
@@ -72,7 +71,8 @@ public class Interpreter
         IStatement program3 = new CompStatement(
             new VarDeclaration("a", new BoolType()),
             new CompStatement(
-                new AssignStatement("a", new ValueExpression(new BoolValue(true))),
+                new AssignStatement("a",
+                    new RelationalExpression(new ValueExpression(new IntValue(2)), new ValueExpression(new IntValue(3)), "<")),
                 new CompStatement(
                     new VarDeclaration("v", new IntType()),
                     new CompStatement(
