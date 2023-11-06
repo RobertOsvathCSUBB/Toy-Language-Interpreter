@@ -40,10 +40,8 @@ public class MemRepository implements IRepository
 
     public void logPrgStateExec() throws MyException
     {
-        try {
-            // ask what's up with this, why it's not working
-            // File file = new File(this.logFilePath);
-            // file.delete();
+        try 
+        {
             PrintWriter logFileWriter = new PrintWriter(new BufferedWriter(new FileWriter(this.logFilePath, true)));
             PrgState crtPrg = this.getCrtPrg();
             logFileWriter.println(crtPrg.toString());

@@ -8,5 +8,6 @@ public interface IMap<T1, T2>
     void remove(T1 key);
     Boolean contains(T1 key);
     Integer size();
-    Boolean isEmpty();   
+    Boolean isEmpty();
+    Iterable<T2> values();
 }

@@ -39,12 +39,15 @@ public class Controller
 
     public void allStep(Integer index)
     {
-        PrgState state = this.getProgramStateByIndex(index);
+        PrgState state = this.getProgramStateByIndex(index - 1);
         System.out.println(state.toString());
+        Integer step = 1;
         try {
             while (!state.getStack().isEmpty())
             {
+                System.out.println(" ---------- Step: " + step.toString() + " ---------\n");
                 this.oneStep(state);
+                step += 1;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

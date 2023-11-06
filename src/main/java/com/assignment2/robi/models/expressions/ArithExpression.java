@@ -39,7 +39,7 @@ public class ArithExpression implements IExpression
             IValue v1, v2;
             v1 = left.evaluate(table);
             v2 = right.evaluate(table);
-            if (!(v1.getType() instanceof IntType) || !(v2.getType() instanceof IntType))
+            if (!(v1.getType().equals(new IntType())) || !(v2.getType().equals(new IntType())))
                 throw new MyException("Invalid expression: " + v1.toString() + " " + op + " " + v2.toString());
             if (this.op.equals("+")) {
                 IntValue res = new IntValue(((IntValue)v1).getValue() + ((IntValue)v2).getValue());

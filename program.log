@@ -1,4 +1,156 @@
 ExeStack:
+{ int a; a = 2 + 3 * 5 | int b | b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ }
+Out:
+[ ]
+
+
+ExeStack:
+{ a = 2 + 3 * 5 | int b | b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ a = 2 + 3 * 5; int b | b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ int b | b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 17; }
+Out:
+[ ]
+
+
+ExeStack:
+{ int b; b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 17; }
+Out:
+[ ]
+
+
+ExeStack:
+{ b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 17; b -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ b = a - 4 / 2 + 7; print(b); }
+SymTable:
+{ a -> 17; b -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ print(b); }
+SymTable:
+{ a -> 17; b -> 22; }
+Out:
+[ ]
+
+
+ExeStack:
+{ }
+SymTable:
+{ a -> 17; b -> 22; }
+Out:
+[ 22, ]
+
+
+ExeStack:
+{ int v; v = 2 | print(v); }
+SymTable:
+{ }
+Out:
+[ ]
+
+
+ExeStack:
+{ v = 2 | print(v); }
+SymTable:
+{ v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ v = 2; print(v); }
+SymTable:
+{ v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ print(v); }
+SymTable:
+{ v -> 2; }
+Out:
+[ ]
+
+
+ExeStack:
+{ }
+SymTable:
+{ v -> 2; }
+Out:
+[ 2, ]
+
+
+ExeStack:
+{ int v; v = 2 | print(v); }
+SymTable:
+{ }
+Out:
+[ ]
+
+
+ExeStack:
+{ v = 2 | print(v); }
+SymTable:
+{ v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ v = 2; print(v); }
+SymTable:
+{ v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ print(v); }
+SymTable:
+{ v -> 2; }
+Out:
+[ ]
+
+
+ExeStack:
+{ }
+SymTable:
+{ v -> 2; }
+Out:
+[ 2, ]
+
+
+ExeStack:
 { string varf; varf = test.in | openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
 SymTable:
 { }
@@ -132,5 +284,197 @@ SymTable:
 { varf -> test.in; varc -> 50; }
 Out:
 [ 15, 50, ]
+
+
+ExeStack:
+{ int v; v = 2 | print(v); }
+SymTable:
+{ }
+Out:
+[ ]
+
+
+ExeStack:
+{ v = 2 | print(v); }
+SymTable:
+{ v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ v = 2; print(v); }
+SymTable:
+{ v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ print(v); }
+SymTable:
+{ v -> 2; }
+Out:
+[ ]
+
+
+ExeStack:
+{ }
+SymTable:
+{ v -> 2; }
+Out:
+[ 2, ]
+
+
+ExeStack:
+{ int a; a = 2 + 3 * 5 | int b | b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ }
+Out:
+[ ]
+
+
+ExeStack:
+{ a = 2 + 3 * 5 | int b | b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ a = 2 + 3 * 5; int b | b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ int b | b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 17; }
+Out:
+[ ]
+
+
+ExeStack:
+{ int b; b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 17; }
+Out:
+[ ]
+
+
+ExeStack:
+{ b = a - 4 / 2 + 7 | print(b); }
+SymTable:
+{ a -> 17; b -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ b = a - 4 / 2 + 7; print(b); }
+SymTable:
+{ a -> 17; b -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ print(b); }
+SymTable:
+{ a -> 17; b -> 22; }
+Out:
+[ ]
+
+
+ExeStack:
+{ }
+SymTable:
+{ a -> 17; b -> 22; }
+Out:
+[ 22, ]
+
+
+ExeStack:
+{ bool a; a = true | int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ }
+Out:
+[ ]
+
+
+ExeStack:
+{ a = true | int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> false; }
+Out:
+[ ]
+
+
+ExeStack:
+{ a = true; int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> false; }
+Out:
+[ ]
+
+
+ExeStack:
+{ int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; }
+Out:
+[ ]
+
+
+ExeStack:
+{ int v; if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; }
+Out:
+[ ]
+
+
+ExeStack:
+{ if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ if (a) then {v = 2} else {v = 3}; print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ v = 2; print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+
+
+ExeStack:
+{ print(v); }
+SymTable:
+{ a -> true; v -> 2; }
+Out:
+[ ]
+
+
+ExeStack:
+{ }
+SymTable:
+{ a -> true; v -> 2; }
+Out:
+[ 2, ]
 
 

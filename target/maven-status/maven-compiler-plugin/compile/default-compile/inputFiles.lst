@@ -1,4 +1,5 @@
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\IStatement.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\ExitCommand.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\VarDeclaration.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\ADTs\IMap.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\types\IntType.java
@@ -19,14 +20,18 @@ C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\expressions\VarExpression.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\expressions\LogicExpression.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\expressions\ArithExpression.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\RunExample.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\Main.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\state\PrgState.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\AssignStatement.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\Interpreter.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\TextMenu.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\types\BoolType.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\ADTs\MyList.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\IfStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\ADTs\MyStack.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\repository\MemRepository.java
+C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\view\Command.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\OpenStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\statements\CloseStatement.java
 C:\Users\osvat\OneDrive\Documents\MAP\assignment2\src\main\java\com\assignment2\robi\models\types\StringType.java

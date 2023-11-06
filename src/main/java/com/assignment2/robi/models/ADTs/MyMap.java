@@ -53,4 +53,9 @@ public class MyMap<T1, T2> implements IMap<T1, T2>
         res += "}";
         return res;
     }
+
+    public Iterable<T2> values()
+    {
+        return this.map.values();
+    }
 }
