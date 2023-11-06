@@ -21,7 +21,6 @@ import com.assignment2.robi.models.statements.VarDeclaration;
 import com.assignment2.robi.models.types.BoolType;
 import com.assignment2.robi.models.types.IntType;
 import com.assignment2.robi.models.types.StringType;
-import com.assignment2.robi.models.values.BoolValue;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.IntValue;
 import com.assignment2.robi.models.values.StringValue;
