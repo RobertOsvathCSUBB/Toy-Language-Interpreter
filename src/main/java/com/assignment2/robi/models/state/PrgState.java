@@ -65,6 +65,6 @@ public class PrgState
 
     public String toString()
     {
-        return "ExeStack:\n" + this.exeStack.toString() + "\nSymTable:\n" + this.symTable.toString() + "\nOut:\n" + this.out.toString() + "\n\n";
+        return "ExeStack:\n" + this.exeStack.toString() + "\nSymTable:\n" + this.symTable.toString() + "\nOut:\n" + this.out.toString() + "\nFileTable:\n" + this.fileTable.toString() + "\n\n";
     }
 }

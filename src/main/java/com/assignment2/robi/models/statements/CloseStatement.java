@@ -48,7 +48,7 @@ public class CloseStatement implements IStatement
             throw new MyException("Error closing file: " + e.getMessage());
         }
 
-        fileTable.remove((StringValue)expVal);
+        fileTable.remove((StringValue)filename);
 
         return state;
     }

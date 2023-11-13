@@ -20,6 +20,6 @@ public class CompStatement implements IStatement {
     }
 
     public String toString() {
-        return this.first.toString() + " | " + this.second.toString() + "";
+        return this.first.toString() + " | " + this.second.toString();
     }
 }
