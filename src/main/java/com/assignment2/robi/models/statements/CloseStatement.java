@@ -25,7 +25,7 @@ public class CloseStatement implements IStatement
 
     public PrgState execute(PrgState state) throws MyException
     {
-        IValue expVal = this.exp.evaluate(state.getSymTable());
+        IValue expVal = this.exp.evaluate(state.getSymTable(), state.getHeap());
         if (!expVal.getType().equals(new StringType())) {
             throw new MyException("Expression is not a string");
         }

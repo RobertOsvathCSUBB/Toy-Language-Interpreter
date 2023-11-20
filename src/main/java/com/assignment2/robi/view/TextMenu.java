@@ -14,7 +14,14 @@ public class TextMenu
 
     public void addCommand(Command c)
     {
-        commands.add(c.getKey(), c);
+        try
+        {
+            commands.add(c.getKey(), c);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void printMenu()

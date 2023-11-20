@@ -1,170 +1,120 @@
 ExeStack:
-{ string varf; varf = test.in | openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ Ref(int) v | new(v, 20) | print(rH(v)) | wH(v, 30) | print(rH(v) + 5); }
 SymTable:
 { }
 Out:
 [ ]
 FileTable:
 { }
-
-
-ExeStack:
-{ varf = test.in | openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
-SymTable:
-{ varf -> ; }
-Out:
-[ ]
-FileTable:
+Heap:
 { }
 
 
 ExeStack:
-{ varf = test.in; openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ Ref(int) v; new(v, 20) | print(rH(v)) | wH(v, 30) | print(rH(v) + 5); }
 SymTable:
-{ varf -> ; }
+{ }
 Out:
 [ ]
 FileTable:
 { }
-
-
-ExeStack:
-{ openRFile(varf) | int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
-SymTable:
-{ varf -> test.in; }
-Out:
-[ ]
-FileTable:
+Heap:
 { }
 
 
 ExeStack:
-{ openRFile(varf); int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ new(v, 20) | print(rH(v)) | wH(v, 30) | print(rH(v) + 5); }
 SymTable:
-{ varf -> test.in; }
+{ v -> (0, int); }
 Out:
 [ ]
 FileTable:
 { }
+Heap:
+{ }
 
 
 ExeStack:
-{ int varc | readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ new(v, 20); print(rH(v)) | wH(v, 30) | print(rH(v) + 5); }
 SymTable:
-{ varf -> test.in; }
+{ v -> (0, int); }
 Out:
 [ ]
 FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
+{ }
+Heap:
+{ }
 
 
 ExeStack:
-{ int varc; readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ print(rH(v)) | wH(v, 30) | print(rH(v) + 5); }
 SymTable:
-{ varf -> test.in; }
+{ v -> (1, int); }
 Out:
 [ ]
 FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
+{ }
+Heap:
+{ 1 -> 20; }
 
 
 ExeStack:
-{ readFile(varf, varc) | print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ print(rH(v)); wH(v, 30) | print(rH(v) + 5); }
 SymTable:
-{ varf -> test.in; varc -> 0; }
+{ v -> (1, int); }
 Out:
 [ ]
 FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
+{ }
+Heap:
+{ 1 -> 20; }
 
 
 ExeStack:
-{ readFile(varf, varc); print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ wH(v, 30) | print(rH(v) + 5); }
 SymTable:
-{ varf -> test.in; varc -> 0; }
+{ v -> (1, int); }
 Out:
-[ ]
+[ 20, ]
 FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
+{ }
+Heap:
+{ 1 -> 20; }
 
 
 ExeStack:
-{ print(varc) | readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ wH(v, 30); print(rH(v) + 5); }
 SymTable:
-{ varf -> test.in; varc -> 15; }
+{ v -> (1, int); }
 Out:
-[ ]
+[ 20, ]
 FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
+{ }
+Heap:
+{ 1 -> 20; }
 
 
 ExeStack:
-{ print(varc); readFile(varf, varc) | print(varc) | closeRFile(varf); }
+{ print(rH(v) + 5); }
 SymTable:
-{ varf -> test.in; varc -> 15; }
+{ v -> (1, int); }
 Out:
-[ ]
+[ 20, ]
 FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
-
-
-ExeStack:
-{ readFile(varf, varc) | print(varc) | closeRFile(varf); }
-SymTable:
-{ varf -> test.in; varc -> 15; }
-Out:
-[ 15, ]
-FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
-
-
-ExeStack:
-{ readFile(varf, varc); print(varc) | closeRFile(varf); }
-SymTable:
-{ varf -> test.in; varc -> 15; }
-Out:
-[ 15, ]
-FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
-
-
-ExeStack:
-{ print(varc) | closeRFile(varf); }
-SymTable:
-{ varf -> test.in; varc -> 50; }
-Out:
-[ 15, ]
-FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
-
-
-ExeStack:
-{ print(varc); closeRFile(varf); }
-SymTable:
-{ varf -> test.in; varc -> 50; }
-Out:
-[ 15, ]
-FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
-
-
-ExeStack:
-{ closeRFile(varf); }
-SymTable:
-{ varf -> test.in; varc -> 50; }
-Out:
-[ 15, 50, ]
-FileTable:
-{ test.in -> java.io.BufferedReader@6e5e91e4; }
+{ }
+Heap:
+{ 1 -> 30; }
 
 
 ExeStack:
 { }
 SymTable:
-{ varf -> test.in; varc -> 50; }
+{ v -> (1, int); }
 Out:
-[ 15, 50, ]
+[ 20, 35, ]
 FileTable:
 { }
+Heap:
+{ 1 -> 30; }
 
 

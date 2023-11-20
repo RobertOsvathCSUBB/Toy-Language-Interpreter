@@ -43,6 +43,7 @@ public class Controller
         System.out.println(state.toString());
         Integer step = 1;
         try {
+            this.repo.logPrgStateExec();
             while (!state.getStack().isEmpty())
             {
                 System.out.println(" ---------- Step: " + step.toString() + " ---------\n");

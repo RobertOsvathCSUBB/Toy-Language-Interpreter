@@ -1,4 +1,5 @@
 package com.assignment2.robi.models.statements;
+import com.assignment2.robi.models.ADTs.IHeap;
 import com.assignment2.robi.models.ADTs.IList;
 import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.exception.MyException;
@@ -19,7 +20,8 @@ public class PrintStatement implements IStatement {
         IList<IValue> out = state.getOut();
         try {
             IMap<String, IValue> symTable = state.getSymTable();
-            IValue val = this.exp.evaluate(symTable);
+            IHeap heap = state.getHeap();
+            IValue val = this.exp.evaluate(symTable, heap);
             out.add(val);
             return state;
         } catch (Exception e) {

@@ -1,4 +1,5 @@
 package com.assignment2.robi.models.statements;
+import com.assignment2.robi.models.ADTs.IHeap;
 import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.ADTs.IStack;
 import com.assignment2.robi.models.exception.MyException;
@@ -30,7 +31,8 @@ public class IfStatement implements IStatement
     {
         try {
             IMap<String, IValue> symTable = state.getSymTable();
-            IValue val = this.exp.evaluate(symTable);
+            IHeap heap = state.getHeap();
+            IValue val = this.exp.evaluate(symTable, heap);
             if (!(val.getType() instanceof BoolType))
                 throw new Exception("Expression is not a boolean.");
             BoolValue boolVal = (BoolValue)val;

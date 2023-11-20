@@ -1,4 +1,5 @@
 package com.assignment2.robi.models.expressions;
+import com.assignment2.robi.models.ADTs.IHeap;
 import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.types.IntType;
@@ -19,11 +20,11 @@ public class RelationalExpression implements IExpression
         this.op = op;
     }
 
-    public IValue evaluate(IMap<String, IValue> table) throws MyException
+    public IValue evaluate(IMap<String, IValue> table, IHeap heap) throws MyException
     {
         try {
-            IValue leftVal = this.left.evaluate(table);
-            IValue rightVal = this.right.evaluate(table);
+            IValue leftVal = this.left.evaluate(table, heap);
+            IValue rightVal = this.right.evaluate(table, heap);
             if (!leftVal.getType().equals(new IntType()) || !rightVal.getType().equals(new IntType()))
             {
                 throw new MyException("Invalid relational expression");

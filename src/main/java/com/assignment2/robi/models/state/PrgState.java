@@ -11,14 +11,16 @@ public class PrgState
     private IMap<String, IValue> symTable;
     private IList<IValue> out;
     private IMap<StringValue, BufferedReader> fileTable;
+    private IHeap heap;
     private IStatement originalPrg;
     
 
-    public PrgState(IStack<IStatement> stk, IMap<String, IValue> map, IList<IValue> out, IMap<StringValue, BufferedReader> ft, IStatement prg) {
+    public PrgState(IStack<IStatement> stk, IMap<String, IValue> map, IList<IValue> out, IMap<StringValue, BufferedReader> ft, IHeap hp, IStatement prg) {
         this.exeStack = stk;
         this.symTable = map;
         this.out = out;
         this.fileTable = ft;
+        this.heap = hp;
         this.originalPrg = prg;
         this.exeStack.push(prg);
     }
@@ -55,6 +57,14 @@ public class PrgState
         this.fileTable = ft;
     }
 
+    public IHeap getHeap() {
+        return this.heap;
+    }
+
+    public void setHeap(IHeap hp) {
+        this.heap = hp;
+    }
+
     public IStatement getOriginalPrg() {
         return this.originalPrg;
     }
@@ -65,6 +75,7 @@ public class PrgState
 
     public String toString()
     {
-        return "ExeStack:\n" + this.exeStack.toString() + "\nSymTable:\n" + this.symTable.toString() + "\nOut:\n" + this.out.toString() + "\nFileTable:\n" + this.fileTable.toString() + "\n\n";
+        return "ExeStack:\n" + this.exeStack.toString() + "\nSymTable:\n" + this.symTable.toString() + "\nOut:\n" + this.out.toString() 
+        + "\nFileTable:\n" + this.fileTable.toString() + "\nHeap:\n" + this.heap.toString() + "\n\n";
     }
 }

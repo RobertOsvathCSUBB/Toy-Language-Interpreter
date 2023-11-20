@@ -40,7 +40,7 @@ public class ReadStatement implements IStatement
             throw new MyException("Variable is not of type int");
         }
 
-        IValue expVal = this.exp.evaluate(state.getSymTable());
+        IValue expVal = this.exp.evaluate(state.getSymTable(), state.getHeap());
         if (!expVal.getType().equals(new StringType())) {
             throw new MyException("Expression is not of type string");
         }

@@ -1,4 +1,5 @@
 package com.assignment2.robi.models.statements;
+import com.assignment2.robi.models.ADTs.IHeap;
 import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.expressions.IExpression;
@@ -24,11 +25,12 @@ public class AssignStatement implements IStatement
     public PrgState execute(PrgState state) throws MyException
     {
         IMap<String, IValue> symTable = state.getSymTable();
+        IHeap heap = state.getHeap();
         if (!symTable.contains(this.id))
             throw new MyException("Variable " + this.id + " is not defined.");
         try {
             IValue oldVal = symTable.get(this.id);
-            IValue newVal = this.exp.evaluate(symTable);
+            IValue newVal = this.exp.evaluate(symTable, heap);
             if (!oldVal.getType().equals(newVal.getType()))
                 throw new MyException("Declared type of variable " + this.id + " and type of the assigned expression do not match.");
             symTable.update(this.id, newVal);

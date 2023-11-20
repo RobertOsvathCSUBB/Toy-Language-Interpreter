@@ -1,4 +1,5 @@
 package com.assignment2.robi.models.expressions;
+import com.assignment2.robi.models.ADTs.IHeap;
 import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.types.IntType;
@@ -33,12 +34,12 @@ public class ArithExpression implements IExpression
     //     copy.right = (IExpression)this.right.clone();
     // }
 
-    public IValue evaluate(IMap<String, IValue> table) throws MyException
+    public IValue evaluate(IMap<String, IValue> table, IHeap heap) throws MyException
     {
         try {
             IValue v1, v2;
-            v1 = left.evaluate(table);
-            v2 = right.evaluate(table);
+            v1 = left.evaluate(table, heap);
+            v2 = right.evaluate(table, heap);
             if (!(v1.getType().equals(new IntType())) || !(v2.getType().equals(new IntType())))
                 throw new MyException("Invalid expression: " + v1.toString() + " " + op + " " + v2.toString());
             if (this.op.equals("+")) {
