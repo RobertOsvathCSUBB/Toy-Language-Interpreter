@@ -28,7 +28,7 @@ public class TextMenu
     {
         for (Command c : commands.values())
         {
-            String line = String.format("%4s: %s", c.getKey(), c.getDescription());
+            String line = String.format("%s: %s", c.getKey(), c.getDescription());
             System.out.println(line);
         }
     }

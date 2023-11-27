@@ -33,8 +33,8 @@ public class NewStatement implements IStatement
 
         Integer addr = heap.nextFree();
         heap.add(addr, exprVal);
-
         ((RefValue)varVal).setAddress(addr);
+        symTable.update(var, varVal);
 
         return state;
     }

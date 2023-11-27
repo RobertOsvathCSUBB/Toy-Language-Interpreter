@@ -9,40 +9,44 @@ import com.assignment2.robi.models.types.BoolType;
 import com.assignment2.robi.models.values.BoolValue;
 import com.assignment2.robi.models.values.IValue;
 
-public class IfStatement implements IStatement 
+public class WhileStatement implements IStatement 
 {
     private IExpression exp;
-    private IStatement stmt1;
-    private IStatement stmt2;
-    
-    public IfStatement(IExpression exp, IStatement stmt1, IStatement stmt2)
+    private IStatement stmt;
+
+    public WhileStatement(IExpression exp, IStatement stmt)
     {
         this.exp = exp;
-        this.stmt1 = stmt1;
-        this.stmt2 = stmt2;
+        this.stmt = stmt;
     }
 
     public String toString()
     {
-        return "if (" + this.exp.toString() + ") then {" + this.stmt1.toString() + "} else {" + this.stmt2.toString() + "}";
+        return "while (" + this.exp.toString() + ") {" + this.stmt.toString() + "}";
     }
 
-    public PrgState execute (PrgState state) throws MyException
+    public PrgState execute(PrgState state) throws MyException
     {
-        try {
+        try
+        {
             IMap<String, IValue> symTable = state.getSymTable();
             IHeap heap = state.getHeap();
-            IValue val = this.exp.evaluate(symTable, heap);
-            if (!(val.getType() instanceof BoolType))
-                throw new MyException("Expression is not a boolean.");
-            BoolValue boolVal = (BoolValue)val;
-            IStack<IStatement> stk = state.getStack();
+            IValue expVal = this.exp.evaluate(symTable, heap);
+            
+            if (!expVal.getType().equals(new BoolType()))
+                throw new MyException("Expression is not boolean");
+
+            BoolValue boolVal = (BoolValue)expVal;
+            IStack<IStatement> stack = state.getStack();
             if (boolVal.getValue())
-                stk.push(this.stmt1);
-            else
-                stk.push(this.stmt2);
+            {
+                stack.push(this);
+                stack.push(this.stmt);
+            }
             return state;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             throw new MyException(e.getMessage());
         }
     }

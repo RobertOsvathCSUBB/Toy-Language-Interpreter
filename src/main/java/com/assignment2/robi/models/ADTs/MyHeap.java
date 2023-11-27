@@ -1,9 +1,12 @@
 package com.assignment2.robi.models.ADTs;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.values.IValue;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.Map.Entry;
 
-public class MyHeap implements IHeap, IMap<Integer, IValue>
+public class MyHeap implements IHeap
 {
     private HashMap<Integer, IValue> data;
     private Integer nextFree;
@@ -24,7 +27,9 @@ public class MyHeap implements IHeap, IMap<Integer, IValue>
         if (this.contains(key))
             throw new MyException("Key already exists in heap");
         this.data.put(key, value);
-        this.nextFree++;
+        this.nextFree = 1;
+        while (this.data.containsKey(this.nextFree))
+            this.nextFree += 1;
     }
 
     public IValue get(Integer key)
@@ -57,9 +62,14 @@ public class MyHeap implements IHeap, IMap<Integer, IValue>
         return this.data.isEmpty();
     }
 
-    public Iterable<IValue> values()
+    public Collection<IValue> values()
     {
         return this.data.values();
+    }
+
+    public Set<Entry<Integer, IValue>> entrySet()
+    {
+        return this.data.entrySet();
     }
 
     public String toString()
@@ -69,5 +79,18 @@ public class MyHeap implements IHeap, IMap<Integer, IValue>
             res += key.toString() + " -> " + this.data.get(key).toString() + "; ";
         res += "}";
         return res;
+    }
+
+    public void setContent(IHeap newHeap)
+    {
+        this.data = new HashMap<>();
+        newHeap.entrySet().forEach(
+            (Entry<Integer, IValue> e) -> {
+                this.data.put(e.getKey(), e.getValue());
+            }
+        );
+        this.nextFree = 1;
+        while (this.data.containsKey(this.nextFree))
+            this.nextFree += 1;
     }
 }

@@ -1,5 +1,4 @@
 package com.assignment2.robi.view;
-
 import com.assignment2.robi.controller.Controller;
 
 public class RunExample extends Command

@@ -1,5 +1,8 @@
 package com.assignment2.robi.models.ADTs;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.Map.Entry;
 
 public class MyMap<T1, T2> implements IMap<T1, T2>
 {
@@ -54,8 +57,13 @@ public class MyMap<T1, T2> implements IMap<T1, T2>
         return res;
     }
 
-    public Iterable<T2> values()
+    public Collection<T2> values()
     {
         return this.map.values();
+    }
+
+    public Set<Entry<T1, T2>> entrySet()
+    {
+        return this.map.entrySet();
     }
 }

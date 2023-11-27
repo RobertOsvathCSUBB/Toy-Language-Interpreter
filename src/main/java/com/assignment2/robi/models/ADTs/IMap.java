@@ -1,4 +1,7 @@
 package com.assignment2.robi.models.ADTs;
+import java.util.Collection;
+import java.util.Set;
+import java.util.Map.Entry;
 import com.assignment2.robi.models.exception.MyException;
 
 public interface IMap<T1, T2>
@@ -10,5 +13,6 @@ public interface IMap<T1, T2>
     Boolean contains(T1 key);
     Integer size();
     Boolean isEmpty();
-    Iterable<T2> values();
+    Collection<T2> values();
+    Set<Entry<T1, T2>> entrySet();
 }

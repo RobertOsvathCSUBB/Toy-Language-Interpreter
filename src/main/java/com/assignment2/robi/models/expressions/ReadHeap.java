@@ -29,6 +29,7 @@ public class ReadHeap implements IExpression
         if (!heap.contains(address))
             throw new MyException("Address not found in heap.");
 
-        return heap.get(address);
+        IValue value = heap.get(address);
+        return value;
     }
 }

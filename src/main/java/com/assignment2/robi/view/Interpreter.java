@@ -135,12 +135,31 @@ public class Interpreter
                 )
             )
         );
+
+        IStatement program6 = new CompStatement(
+            new VarDeclaration("v", new RefType(new IntType())),
+            new CompStatement(
+                new NewStatement("v", new ValueExpression(new IntValue(20))),
+                new CompStatement(
+                    new VarDeclaration("a", new RefType(new RefType(new IntType()))),
+                    new CompStatement(
+                        new NewStatement("a", new VarExpression("v")),
+                        new CompStatement(
+                            new NewStatement("v", new ValueExpression(new IntValue(30))),
+                            new PrintStatement(new ReadHeap(new ReadHeap(new VarExpression("a"))))
+                        )
+                    )
+                )
+            )
+        );
         
         PrgState state1 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program1);
         PrgState state2 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program2);
         PrgState state3 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program3);
         PrgState state4 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program4);
         PrgState state5 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program5);
+        PrgState state6 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program6);
+
 
 
         IRepository repo = new MemRepository();
@@ -149,6 +168,7 @@ public class Interpreter
         repo.add(state3);
         repo.add(state4);
         repo.add(state5);
+        repo.add(state6);
         Controller ctrl = new Controller(repo);
         ctrl.setLogFile("program.log");
 
@@ -159,6 +179,7 @@ public class Interpreter
         menu.addCommand(new RunExample("3", program3.toString(), ctrl));
         menu.addCommand(new RunExample("4", program4.toString(), ctrl));
         menu.addCommand(new RunExample("5", program5.toString(), ctrl));
+        menu.addCommand(new RunExample("6", program6.toString(), ctrl));
         menu.show();
     }    
 }

@@ -1,4 +1,7 @@
 package com.assignment2.robi.models.ADTs;
+import java.util.Collection;
+import java.util.Set;
+import java.util.Map.Entry;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.values.IValue;
 
@@ -12,5 +15,7 @@ public interface IHeap
     Boolean contains(Integer key);
     Integer size();
     Boolean isEmpty();
-    Iterable<IValue> values();
+    Collection<IValue> values();
+    Set<Entry<Integer, IValue>> entrySet();
+    void setContent(IHeap newHeap);
 }
