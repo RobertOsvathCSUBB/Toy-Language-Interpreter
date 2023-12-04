@@ -2,78 +2,104 @@ package com.assignment2.robi.controller;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.repository.IRepository;
-import com.assignment2.robi.models.statements.IStatement;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.RefValue;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 import com.assignment2.robi.models.ADTs.IHeap;
 import com.assignment2.robi.models.ADTs.IMap;
-import com.assignment2.robi.models.ADTs.IStack;
 import com.assignment2.robi.models.ADTs.MyHeap;
-import com.assignment2.robi.models.ADTs.MyMap;
+import java.util.concurrent.Executors;
 
 public class Controller 
 {
     private IRepository repo;
+    private ExecutorService executor;
 
     public Controller(IRepository r)
     {
         this.repo = r;
     }
 
-    public void setLogFile(String path)
+    private void oneStepForAll(List<PrgState> states) throws MyException
     {
-        this.repo.setLogFile(path);
-    }
-
-    public PrgState getProgramStateByIndex(Integer index)
-    {
-        this.repo.setCrtPrg(index);
-        return this.repo.getCrtPrg();
-    }
-
-    public PrgState oneStep(PrgState state) throws MyException
-    {
-        IStack<IStatement> stk = state.getStack();
-        if (stk.isEmpty())
-            throw new MyException("Stack is empty!");
-        IStatement crtStmt = stk.pop();
-        PrgState newState = crtStmt.execute(state);
-        System.out.println(newState.toString());
-        this.repo.logPrgStateExec();
-        return newState;
-    }
-
-    public void allStep(Integer index)
-    {
-        PrgState state = this.getProgramStateByIndex(index - 1);
-        System.out.println(state.toString());
-        Integer step = 1;
-        try {
-            this.repo.logPrgStateExec();
-            while (!state.getStack().isEmpty())
-            {
-                System.out.println(" ---------- Step: " + step.toString() + " ---------\n");
-                this.oneStep(state);
-                step += 1;
-                state.getHeap().setContent(this.unsafeGarbageCollector(this.getAddrFromSymTable(state.getSymTable()), state.getHeap()));
+        System.out.println("\n----- Before one step -----\n");
+        states.forEach(prg -> {
+            try {
+                System.out.println(prg.toString());
+                this.repo.logPrgStateExec(prg);
+            } catch (MyException e) {
+                System.out.println(e.getMessage());
             }
-            state.setSymTable(new MyMap<>());
-            state.getHeap().setContent(this.unsafeGarbageCollector(this.getAddrFromSymTable(state.getSymTable()), state.getHeap()));
-            System.out.println(" ---------- After cleaning up: ---------\n");
-            System.out.println(state.toString());
-            this.repo.logPrgStateExec();
+        });
+
+        List<Callable<PrgState>> callList = states.stream()
+                .map((PrgState p) -> (Callable<PrgState>)(p::oneStep))
+                .collect(Collectors.toList());
+
+        try {
+            List<PrgState> newStates = executor.invokeAll(callList).stream()
+                                                                .map( future -> {
+                                                                    try {
+                                                                        return future.get();
+                                                                    }
+                                                                    catch (Exception e) {
+                                                                        System.out.println(e.getMessage());
+                                                                        return null;
+                                                                    }
+                                                                })
+                                                                .filter(p -> p != null)
+                                                                .collect(Collectors.toList());
+            states.addAll(newStates);
+            System.out.println("\n----- After one step -----\n");
+            states.forEach(prg -> {
+                try {
+                    System.out.println(prg.toString());
+                    this.repo.logPrgStateExec(prg);
+                } catch (MyException e) {
+                    System.out.println(e.getMessage());
+                }
+            });
+            this.repo.setPrgList(states);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new MyException(e.getMessage());
         }
     }
 
-    List<Integer> getAddrFromSymTable(IMap<String, IValue> symTable)
+    public void allStep()
     {
-        Collection<IValue> values = symTable.values();
+        this.executor = Executors.newFixedThreadPool(2);
+        List<PrgState> prgList = removeCompletedPrg(this.repo.getPrgList());
+        System.out.println(prgList.size());
+        while (!prgList.isEmpty())
+        {
+            IHeap heap = this.repo.getPrgList().get(0).getHeap();
+            heap.setContent(garbageCollector(getAddrFromSymTables(), heap));
+            try {
+                this.oneStepForAll(prgList);
+            } catch (MyException e) {
+                System.out.println(e.getMessage());
+                break;
+            }
+            prgList = removeCompletedPrg(this.repo.getPrgList());
+        }
+        this.executor.shutdownNow();
+        this.repo.setPrgList(prgList);
+    }
+
+    private List<Integer> getAddrFromSymTables()
+    {
+        List<PrgState> states = this.repo.getPrgList();
+        List<IValue> values = states.stream()
+                .map(PrgState::getSymTable)
+                .map(IMap::values)
+                .flatMap(Collection::stream)
+                .distinct()
+                .collect(Collectors.toList());
         return values.stream()
                 .filter(v -> v instanceof RefValue)
                 .map(v -> {
@@ -83,7 +109,7 @@ public class Controller
                 .collect(Collectors.toList());
     }
 
-    IHeap unsafeGarbageCollector(List<Integer> symTableAddr, IHeap heap)
+    private IHeap garbageCollector(List<Integer> symTableAddr, IHeap heap)
     {
         Map<Integer, IValue> newHeapMap = heap.entrySet().stream()
                 .filter(e -> symTableAddr.contains(e.getKey()))
@@ -95,5 +121,12 @@ public class Controller
             } catch (MyException e) {}
         });
         return newHeap;
+    }
+
+    private List<PrgState> removeCompletedPrg(List<PrgState> states)
+    {
+        return states.stream()
+                .filter(PrgState::isNotCompleted)
+                .collect(Collectors.toList());
     }
 }

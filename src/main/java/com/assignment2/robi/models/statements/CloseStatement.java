@@ -50,6 +50,6 @@ public class CloseStatement implements IStatement
 
         fileTable.remove((StringValue)filename);
 
-        return state;
+        return null;
     }
 }

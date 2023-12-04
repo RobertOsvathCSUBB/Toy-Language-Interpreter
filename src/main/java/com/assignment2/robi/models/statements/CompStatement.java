@@ -16,7 +16,7 @@ public class CompStatement implements IStatement {
         IStack<IStatement> stk = state.getStack();
         stk.push(this.second);
         stk.push(this.first);
-        return state;
+        return null;
     }
 
     public String toString() {

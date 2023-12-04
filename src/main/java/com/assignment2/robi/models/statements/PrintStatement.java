@@ -23,7 +23,7 @@ public class PrintStatement implements IStatement {
             IHeap heap = state.getHeap();
             IValue val = this.exp.evaluate(symTable, heap);
             out.add(val);
-            return state;
+            return null;
         } catch (Exception e) {
             throw new MyException(e.getMessage());
         }

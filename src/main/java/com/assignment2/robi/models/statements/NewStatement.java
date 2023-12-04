@@ -36,7 +36,7 @@ public class NewStatement implements IStatement
         ((RefValue)varVal).setAddress(addr);
         symTable.update(var, varVal);
 
-        return state;
+        return null;
     }
 
     public String toString()

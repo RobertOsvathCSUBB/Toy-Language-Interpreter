@@ -41,7 +41,7 @@ public class IfStatement implements IStatement
                 stk.push(this.stmt1);
             else
                 stk.push(this.stmt2);
-            return state;
+            return null;
         } catch (Exception e) {
             throw new MyException(e.getMessage());
         }

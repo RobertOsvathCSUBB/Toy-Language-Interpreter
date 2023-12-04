@@ -43,7 +43,7 @@ public class WhileStatement implements IStatement
                 stack.push(this);
                 stack.push(this.stmt);
             }
-            return state;
+            return null;
         }
         catch (Exception e)
         {

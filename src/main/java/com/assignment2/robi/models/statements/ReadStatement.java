@@ -68,6 +68,6 @@ public class ReadStatement implements IStatement
             throw new MyException("Error reading from file: " + e.getMessage());
         }
 
-        return state;
+        return null;
     }
 }

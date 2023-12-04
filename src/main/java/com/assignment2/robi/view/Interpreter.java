@@ -1,5 +1,7 @@
 package com.assignment2.robi.view;
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.List;
 import com.assignment2.robi.controller.Controller;
 import com.assignment2.robi.models.ADTs.MyHeap;
 import com.assignment2.robi.models.ADTs.MyList;
@@ -21,6 +23,7 @@ import com.assignment2.robi.models.statements.OpenStatement;
 import com.assignment2.robi.models.statements.PrintStatement;
 import com.assignment2.robi.models.statements.ReadStatement;
 import com.assignment2.robi.models.statements.VarDeclaration;
+import com.assignment2.robi.models.statements.WhileStatement;
 import com.assignment2.robi.models.statements.WriteHeap;
 import com.assignment2.robi.models.types.BoolType;
 import com.assignment2.robi.models.types.IntType;
@@ -29,7 +32,6 @@ import com.assignment2.robi.models.types.StringType;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.IntValue;
 import com.assignment2.robi.models.values.StringValue;
-import com.assignment2.robi.repository.IRepository;
 import com.assignment2.robi.repository.MemRepository;
 
 public class Interpreter 
@@ -152,6 +154,20 @@ public class Interpreter
                 )
             )
         );
+
+        IStatement program7 = new CompStatement(
+            new VarDeclaration("a", new IntType()),
+            new CompStatement(
+                new AssignStatement("a", new ValueExpression(new IntValue(1))),
+                new WhileStatement(
+                    new RelationalExpression(new VarExpression("a"), new ValueExpression(new IntValue(4)), "<="),
+                    new CompStatement(
+                        new PrintStatement(new VarExpression("a")),
+                        new AssignStatement("a", new ArithExpression(new VarExpression("a"), new ValueExpression(new IntValue(1)), "+"))
+                    )
+                )
+            )
+        );
         
         PrgState state1 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program1);
         PrgState state2 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program2);
@@ -159,27 +175,38 @@ public class Interpreter
         PrgState state4 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program4);
         PrgState state5 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program5);
         PrgState state6 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program6);
+        PrgState state7 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program7);
 
+        List<MemRepository> repoList = new ArrayList<MemRepository>();
+        for (int i = 0; i < 7; i++)
+        {
+            repoList.add(new MemRepository());
+            repoList.get(i).setLogFile("program" + Integer.toString(i + 1) + ".txt");
+        }
 
-
-        IRepository repo = new MemRepository();
-        repo.add(state1);
-        repo.add(state2);
-        repo.add(state3);
-        repo.add(state4);
-        repo.add(state5);
-        repo.add(state6);
-        Controller ctrl = new Controller(repo);
-        ctrl.setLogFile("program.log");
+        repoList.get(0).add(state1);
+        repoList.get(1).add(state2);
+        repoList.get(2).add(state3);
+        repoList.get(3).add(state4);
+        repoList.get(4).add(state5);
+        repoList.get(5).add(state6);
+        repoList.get(6).add(state7);
+        
+        List<Controller> ctrlList = new ArrayList<Controller>();
+        for (int i = 0; i < 7; i++)
+        {
+            ctrlList.add(new Controller(repoList.get(i)));
+        }
 
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0", "exit"));
-        menu.addCommand(new RunExample("1", program1.toString(), ctrl));
-        menu.addCommand(new RunExample("2", program2.toString(), ctrl));
-        menu.addCommand(new RunExample("3", program3.toString(), ctrl));
-        menu.addCommand(new RunExample("4", program4.toString(), ctrl));
-        menu.addCommand(new RunExample("5", program5.toString(), ctrl));
-        menu.addCommand(new RunExample("6", program6.toString(), ctrl));
+        menu.addCommand(new RunExample("1", program1.toString(), ctrlList.get(0)));
+        menu.addCommand(new RunExample("2", program2.toString(), ctrlList.get(1)));
+        menu.addCommand(new RunExample("3", program3.toString(), ctrlList.get(2)));
+        menu.addCommand(new RunExample("4", program4.toString(), ctrlList.get(3)));
+        menu.addCommand(new RunExample("5", program5.toString(), ctrlList.get(4)));
+        menu.addCommand(new RunExample("6", program6.toString(), ctrlList.get(5)));
+        menu.addCommand(new RunExample("7", program7.toString(), ctrlList.get(6)));
         menu.show();
     }    
 }

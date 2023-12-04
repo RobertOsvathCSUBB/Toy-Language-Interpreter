@@ -4,5 +4,5 @@ public interface IStack<T>
 {
     void push(T elem);
     T pop();
-    Boolean isEmpty();     
+    Boolean isEmpty();
 }

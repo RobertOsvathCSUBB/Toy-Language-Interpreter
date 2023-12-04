@@ -43,6 +43,6 @@ public class WriteHeap implements IStatement
             throw new MyException("Expression type and reference variable type do not match.");
 
         heap.update(address, expVal);
-        return state;
+        return null;
     }
 }

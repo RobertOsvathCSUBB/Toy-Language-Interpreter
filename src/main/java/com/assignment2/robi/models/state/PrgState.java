@@ -1,6 +1,7 @@
 package com.assignment2.robi.models.state;
 import com.assignment2.robi.models.statements.IStatement;
 import com.assignment2.robi.models.ADTs.*;
+import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.StringValue;
 import java.io.BufferedReader;
@@ -13,7 +14,7 @@ public class PrgState
     private IMap<StringValue, BufferedReader> fileTable;
     private IHeap heap;
     private IStatement originalPrg;
-    
+    static Integer id = 0;
 
     public PrgState(IStack<IStatement> stk, IMap<String, IValue> map, IList<IValue> out, IMap<StringValue, BufferedReader> ft, IHeap hp, IStatement prg) {
         this.exeStack = stk;
@@ -23,6 +24,7 @@ public class PrgState
         this.heap = hp;
         this.originalPrg = prg;
         this.exeStack.push(prg);
+        PrgState.manageId();
     }
 
     public IStack<IStatement> getStack() {
@@ -73,9 +75,26 @@ public class PrgState
         this.originalPrg = prg;
     }
 
+    public Boolean isNotCompleted() {
+        return !this.exeStack.isEmpty();
+    }
+
+    public PrgState oneStep() throws MyException {
+        if (this.exeStack.isEmpty()) {
+            throw new MyException("Stack is empty");
+        }
+        IStatement crtStmt = this.exeStack.pop();
+        return crtStmt.execute(this);
+    }
+
+    static void manageId() {
+        System.out.println("Current id: " + PrgState.id);
+        PrgState.id += 1;
+    } 
+
     public String toString()
     {
         return "ExeStack:\n" + this.exeStack.toString() + "\nSymTable:\n" + this.symTable.toString() + "\nOut:\n" + this.out.toString() 
-        + "\nFileTable:\n" + this.fileTable.toString() + "\nHeap:\n" + this.heap.toString() + "\n\n";
+        + "\nFileTable:\n" + this.fileTable.toString() + "\nHeap:\n" + this.heap.toString() + "\nID:\n" + PrgState.id + "\n\n";
     }
 }

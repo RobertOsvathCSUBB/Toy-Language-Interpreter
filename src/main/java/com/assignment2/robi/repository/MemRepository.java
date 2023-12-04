@@ -1,5 +1,6 @@
 package com.assignment2.robi.repository;
 import java.util.ArrayList;
+import java.util.List;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.state.PrgState;
 import java.io.FileWriter;
@@ -9,8 +10,7 @@ import java.io.IOException;
 
 public class MemRepository implements IRepository 
 {
-    private ArrayList<PrgState> states;
-    private Integer crtPrg;
+    private List<PrgState> states;
     private String logFilePath;
 
     public MemRepository()
@@ -23,32 +23,31 @@ public class MemRepository implements IRepository
         this.logFilePath = path;
     }
 
-    public void setCrtPrg(Integer index)
-    {
-        this.crtPrg = index;
-    }
-
     public void add(PrgState state)
     {
         this.states.add(state);
     }
 
-    public PrgState getCrtPrg()
-    {
-        return this.states.get(this.crtPrg);
-    }
-
-    public void logPrgStateExec() throws MyException
+    public void logPrgStateExec(PrgState state) throws MyException
     {
         try 
         {
             PrintWriter logFileWriter = new PrintWriter(new BufferedWriter(new FileWriter(this.logFilePath, true)));
-            PrgState crtPrg = this.getCrtPrg();
-            logFileWriter.println(crtPrg.toString());
+            logFileWriter.println(state.toString());
             logFileWriter.close();
         }
         catch (IOException e){
             throw new MyException("IOException: " + e.getMessage());
         }
+    }
+
+    public List<PrgState> getPrgList()
+    {
+        return this.states;
+    }
+
+    public void setPrgList(List<PrgState> states)
+    {
+        this.states = states;
     }
 }

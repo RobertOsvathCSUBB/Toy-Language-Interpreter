@@ -27,6 +27,6 @@ public class VarDeclaration implements IStatement
         if (symTable.contains(this.name))
             throw new MyException("Variable already declared!");
         symTable.add(this.name, this.type.getDefaultValue());
-        return state;
+        return null;
     }
 }

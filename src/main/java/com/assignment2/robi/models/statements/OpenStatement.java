@@ -49,6 +49,6 @@ public class OpenStatement implements IStatement
             throw new MyException(e.getMessage());
         }
         
-        return state;
+        return null;
     }
 }

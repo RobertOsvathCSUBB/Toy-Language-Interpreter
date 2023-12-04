@@ -15,8 +15,7 @@ public class RunExample extends Command
     public void execute()
     {
         try {
-            Integer prgStateId = Integer.parseInt(this.getKey());
-            ctr.allStep(prgStateId);
+            ctr.allStep();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

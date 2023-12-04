@@ -34,7 +34,7 @@ public class AssignStatement implements IStatement
             if (!oldVal.getType().equals(newVal.getType()))
                 throw new MyException("Declared type of variable " + this.id + " and type of the assigned expression do not match.");
             symTable.update(this.id, newVal);
-            return state;
+            return null;
         } catch (Exception e) {
             throw new MyException(e.getMessage());
         }

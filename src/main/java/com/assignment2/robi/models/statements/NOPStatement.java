@@ -6,7 +6,7 @@ public class NOPStatement implements IStatement
 {
     public PrgState execute(PrgState state) throws MyException 
     {
-        return state;
+        return null;
     }
 
     public String toString()
