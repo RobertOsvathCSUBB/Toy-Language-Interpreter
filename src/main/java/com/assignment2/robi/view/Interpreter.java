@@ -16,6 +16,7 @@ import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.statements.AssignStatement;
 import com.assignment2.robi.models.statements.CloseStatement;
 import com.assignment2.robi.models.statements.CompStatement;
+import com.assignment2.robi.models.statements.ForkStatement;
 import com.assignment2.robi.models.statements.IStatement;
 import com.assignment2.robi.models.statements.IfStatement;
 import com.assignment2.robi.models.statements.NewStatement;
@@ -168,6 +169,37 @@ public class Interpreter
                 )
             )
         );
+
+        IStatement program8 = new CompStatement(
+                new VarDeclaration("v", new IntType()),
+                new CompStatement(
+                    new VarDeclaration("a", new RefType(new IntType())),
+                    new CompStatement(
+                        new AssignStatement("v", new ValueExpression(new IntValue(10))),
+                        new CompStatement(
+                            new NewStatement("a", new ValueExpression(new IntValue(22))),
+                            new CompStatement(
+                                new ForkStatement(
+                                    new CompStatement(
+                                        new WriteHeap("a", new ValueExpression(new IntValue(30))),
+                                        new CompStatement(
+                                            new AssignStatement("v", new ValueExpression(new IntValue(32))),
+                                            new CompStatement(
+                                                new PrintStatement(new VarExpression("v")),
+                                                new PrintStatement(new ReadHeap(new VarExpression("a")))
+                                            )
+                                        )
+                                    )
+                                ),
+                                new CompStatement(
+                                    new PrintStatement(new VarExpression("v")),
+                                    new PrintStatement(new ReadHeap(new VarExpression("a")))
+                                )
+                            )
+                        )
+                    )
+                )
+        );
         
         PrgState state1 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program1);
         PrgState state2 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program2);
@@ -176,9 +208,10 @@ public class Interpreter
         PrgState state5 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program5);
         PrgState state6 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program6);
         PrgState state7 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program7);
+        PrgState state8 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program8);
 
         List<MemRepository> repoList = new ArrayList<MemRepository>();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 8; i++)
         {
             repoList.add(new MemRepository());
             repoList.get(i).setLogFile("program" + Integer.toString(i + 1) + ".txt");
@@ -191,9 +224,10 @@ public class Interpreter
         repoList.get(4).add(state5);
         repoList.get(5).add(state6);
         repoList.get(6).add(state7);
-        
+        repoList.get(7).add(state8);
+
         List<Controller> ctrlList = new ArrayList<Controller>();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 8; i++)
         {
             ctrlList.add(new Controller(repoList.get(i)));
         }
@@ -207,6 +241,7 @@ public class Interpreter
         menu.addCommand(new RunExample("5", program5.toString(), ctrlList.get(4)));
         menu.addCommand(new RunExample("6", program6.toString(), ctrlList.get(5)));
         menu.addCommand(new RunExample("7", program7.toString(), ctrlList.get(6)));
+        menu.addCommand(new RunExample("8", program8.toString(), ctrlList.get(7)));
         menu.show();
     }    
 }

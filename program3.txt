@@ -1,0 +1,260 @@
+ID: 3
+ExeStack:
+{ bool a | a = 2 < 3 | int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ bool a; a = 2 < 3 | int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ bool a; a = 2 < 3 | int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ a = 2 < 3 | int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> false; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ a = 2 < 3 | int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> false; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ a = 2 < 3; int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> false; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ a = 2 < 3; int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> false; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ int v | if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ int v; if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ int v; if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ if (a) then {v = 2} else {v = 3} | print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ if (a) then {v = 2} else {v = 3}; print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ if (a) then {v = 2} else {v = 3}; print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ v = 2; print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ v = 2; print(v); }
+SymTable:
+{ a -> true; v -> 0; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ print(v); }
+SymTable:
+{ a -> true; v -> 2; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ print(v); }
+SymTable:
+{ a -> true; v -> 2; }
+Out:
+[ ]
+FileTable:
+{ }
+Heap:
+{ }
+
+
+ID: 3
+ExeStack:
+{ }
+SymTable:
+{ a -> true; v -> 2; }
+Out:
+[ 2, ]
+FileTable:
+{ }
+Heap:
+{ }
+
+

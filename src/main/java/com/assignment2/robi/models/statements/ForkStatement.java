@@ -22,12 +22,9 @@ public class ForkStatement implements IStatement
 
     public PrgState execute(PrgState state) throws MyException 
     {
-        PrgState newState = new PrgState(null, null, state.getOut(), state.getFileTable(), state.getHeap(), stm);
         IStack<IStatement> newStack = new MyStack<>();
-        newStack.push(stm);
-        newState.setStack(newStack);
         IMap<String, IValue> newSymTable = state.getSymTable().clone();
-        newState.setSymTable(newSymTable);
+        PrgState newState = new PrgState(newStack, newSymTable, state.getOut(), state.getFileTable(), state.getHeap(), stm);
         return newState;
     }
 }

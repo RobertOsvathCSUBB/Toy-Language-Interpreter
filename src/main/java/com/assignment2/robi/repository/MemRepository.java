@@ -33,7 +33,9 @@ public class MemRepository implements IRepository
         try 
         {
             PrintWriter logFileWriter = new PrintWriter(new BufferedWriter(new FileWriter(this.logFilePath, true)));
+            logFileWriter.println("\n------------------------\n");
             logFileWriter.println(state.toString());
+            logFileWriter.println("\n------------------------\n");
             logFileWriter.close();
         }
         catch (IOException e){

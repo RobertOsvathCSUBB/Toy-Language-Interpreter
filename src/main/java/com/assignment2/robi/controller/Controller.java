@@ -19,15 +19,17 @@ public class Controller
 {
     private IRepository repo;
     private ExecutorService executor;
+    private Integer stepCount;
 
     public Controller(IRepository r)
     {
         this.repo = r;
+        this.stepCount = 1;
     }
 
     private void oneStepForAll(List<PrgState> states) throws MyException
     {
-        System.out.println("\n----- Before one step -----\n");
+        System.out.println("\n----- Before step " + this.stepCount + " -----\n");
         states.forEach(prg -> {
             try {
                 System.out.println(prg.toString());
@@ -55,7 +57,7 @@ public class Controller
                                                                 .filter(p -> p != null)
                                                                 .collect(Collectors.toList());
             states.addAll(newStates);
-            System.out.println("\n----- After one step -----\n");
+            System.out.println("\n----- After step " + this.stepCount + " -----\n");
             states.forEach(prg -> {
                 try {
                     System.out.println(prg.toString());
@@ -64,6 +66,7 @@ public class Controller
                     System.out.println(e.getMessage());
                 }
             });
+            this.stepCount++;
             this.repo.setPrgList(states);
         } catch (Exception e) {
             throw new MyException(e.getMessage());
@@ -74,7 +77,6 @@ public class Controller
     {
         this.executor = Executors.newFixedThreadPool(2);
         List<PrgState> prgList = removeCompletedPrg(this.repo.getPrgList());
-        System.out.println(prgList.size());
         while (!prgList.isEmpty())
         {
             IHeap heap = this.repo.getPrgList().get(0).getHeap();

@@ -14,7 +14,8 @@ public class PrgState
     private IMap<StringValue, BufferedReader> fileTable;
     private IHeap heap;
     private IStatement originalPrg;
-    static Integer id = 0;
+    private Integer uniqueId;
+    static Integer ID_COUNT = 0;
 
     public PrgState(IStack<IStatement> stk, IMap<String, IValue> map, IList<IValue> out, IMap<StringValue, BufferedReader> ft, IHeap hp, IStatement prg) {
         this.exeStack = stk;
@@ -23,8 +24,8 @@ public class PrgState
         this.fileTable = ft;
         this.heap = hp;
         this.originalPrg = prg;
+        this.uniqueId = PrgState.getId();
         this.exeStack.push(prg);
-        PrgState.manageId();
     }
 
     public IStack<IStatement> getStack() {
@@ -87,14 +88,14 @@ public class PrgState
         return crtStmt.execute(this);
     }
 
-    static void manageId() {
-        System.out.println("Current id: " + PrgState.id);
-        PrgState.id += 1;
-    } 
+    private static synchronized Integer getId() 
+    {
+        return ++PrgState.ID_COUNT;
+    }
 
     public String toString()
     {
-        return "ExeStack:\n" + this.exeStack.toString() + "\nSymTable:\n" + this.symTable.toString() + "\nOut:\n" + this.out.toString() 
-        + "\nFileTable:\n" + this.fileTable.toString() + "\nHeap:\n" + this.heap.toString() + "\nID:\n" + PrgState.id + "\n\n";
+        return "ID: " + this.uniqueId + "\nExeStack:\n" + this.exeStack.toString() + "\nSymTable:\n" + this.symTable.toString() + "\nOut:\n" + this.out.toString() 
+        + "\nFileTable:\n" + this.fileTable.toString() + "\nHeap:\n" + this.heap.toString() + "\n\n";
     }
 }
