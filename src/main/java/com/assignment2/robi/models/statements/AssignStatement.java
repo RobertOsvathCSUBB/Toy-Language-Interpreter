@@ -5,6 +5,7 @@ import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.expressions.IExpression;
 import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.values.IValue;
+import com.assignment2.robi.models.types.IType;
 
 public class AssignStatement implements IStatement 
 {
@@ -38,5 +39,15 @@ public class AssignStatement implements IStatement
         } catch (Exception e) {
             throw new MyException(e.getMessage());
         }
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        IType typevar = typeEnv.get(this.id);
+        IType typexp = this.exp.typecheck(typeEnv);
+        if (typevar.equals(typexp))
+            return typeEnv;
+        else
+            throw new MyException("Assignment: right hand side and left hand side have different types.");
     }
 }

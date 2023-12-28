@@ -6,6 +6,7 @@ import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.expressions.IExpression;
 import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.values.IValue;
+import com.assignment2.robi.models.types.IType;
 
 public class PrintStatement implements IStatement {
     private IExpression exp;
@@ -32,5 +33,11 @@ public class PrintStatement implements IStatement {
     public String toString()
     {
         return "print(" + this.exp.toString() + ")";
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        this.exp.typecheck(typeEnv);
+        return typeEnv;
     }
 }

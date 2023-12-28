@@ -6,6 +6,8 @@ import com.assignment2.robi.models.types.IntType;
 import com.assignment2.robi.models.values.BoolValue;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.IntValue;
+import com.assignment2.robi.models.types.BoolType;
+import com.assignment2.robi.models.types.IType;
 
 public class RelationalExpression implements IExpression
 {
@@ -71,5 +73,27 @@ public class RelationalExpression implements IExpression
     public String toString()
     {
         return this.left.toString() + " " + this.op + " " + this.right.toString();
+    }
+
+    public IType typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+            IType type1, type2;
+            type1 = left.typecheck(typeEnv);
+            type2 = right.typecheck(typeEnv);
+            if (type1.equals(new IntType()))
+            {
+                if (type2.equals(new IntType()))
+                {
+                    return new BoolType();
+                }
+                else
+                {
+                    throw new MyException("Second operand is not an integer");
+                }
+            }
+            else 
+            {
+                throw new MyException("First operand is not an integer");
+            }
     }
 }

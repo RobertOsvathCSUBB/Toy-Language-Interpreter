@@ -8,6 +8,7 @@ import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.types.BoolType;
 import com.assignment2.robi.models.values.BoolValue;
 import com.assignment2.robi.models.values.IValue;
+import com.assignment2.robi.models.types.IType;
 
 public class IfStatement implements IStatement 
 {
@@ -45,5 +46,18 @@ public class IfStatement implements IStatement
         } catch (Exception e) {
             throw new MyException(e.getMessage());
         }
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        IType typexp = this.exp.typecheck(typeEnv);
+        if (typexp.equals(new BoolType()))
+        {
+            this.stmt1.typecheck(typeEnv.clone());
+            this.stmt2.typecheck(typeEnv.clone());
+            return typeEnv;
+        }
+        else
+            throw new MyException("The condition of IF isn't of type bool.");
     }
 }

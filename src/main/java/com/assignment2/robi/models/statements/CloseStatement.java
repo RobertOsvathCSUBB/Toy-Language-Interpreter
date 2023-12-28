@@ -1,6 +1,5 @@
 package com.assignment2.robi.models.statements;
 import java.io.BufferedReader;
-
 import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.expressions.IExpression;
@@ -8,6 +7,7 @@ import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.types.StringType;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.StringValue;
+import com.assignment2.robi.models.types.IType;
 
 public class CloseStatement implements IStatement
 {
@@ -51,5 +51,14 @@ public class CloseStatement implements IStatement
         fileTable.remove((StringValue)filename);
 
         return null;
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        IType typexp = this.exp.typecheck(typeEnv);
+        if (typexp.equals(new StringType()))
+            return typeEnv;
+        else
+            throw new MyException("Close file: expression is not a string.");
     }
 }

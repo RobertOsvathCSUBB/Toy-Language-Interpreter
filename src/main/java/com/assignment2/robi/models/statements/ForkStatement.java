@@ -5,6 +5,7 @@ import com.assignment2.robi.models.ADTs.MyStack;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.values.IValue;
+import com.assignment2.robi.models.types.IType;
 
 public class ForkStatement implements IStatement 
 {
@@ -26,5 +27,11 @@ public class ForkStatement implements IStatement
         IMap<String, IValue> newSymTable = state.getSymTable().clone();
         PrgState newState = new PrgState(newStack, newSymTable, state.getOut(), state.getFileTable(), state.getHeap(), stm);
         return newState;
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        stm.typecheck(typeEnv.clone());
+        return typeEnv;
     }
 }

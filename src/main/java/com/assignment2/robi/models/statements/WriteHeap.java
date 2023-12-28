@@ -6,6 +6,8 @@ import com.assignment2.robi.models.expressions.IExpression;
 import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.RefValue;
+import com.assignment2.robi.models.types.IType;
+import com.assignment2.robi.models.types.RefType;
 
 public class WriteHeap implements IStatement
 {
@@ -44,5 +46,15 @@ public class WriteHeap implements IStatement
 
         heap.update(address, expVal);
         return null;
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        IType typevar = typeEnv.get(this.varName);
+        IType typexp = this.exp.typecheck(typeEnv);
+        if (typevar.equals(new RefType(typexp)))
+            return typeEnv;
+        else
+            throw new MyException("WriteHeap: right hand side and left hand side have different types.");
     }
 }

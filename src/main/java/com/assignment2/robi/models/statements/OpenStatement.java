@@ -9,6 +9,7 @@ import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.types.StringType;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.StringValue;
+import com.assignment2.robi.models.types.IType;
 
 public class OpenStatement implements IStatement
 {
@@ -50,5 +51,14 @@ public class OpenStatement implements IStatement
         }
         
         return null;
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        IType typexp = this.exp.typecheck(typeEnv);
+        if (typexp.equals(new StringType()))
+            return typeEnv;
+        else
+            throw new MyException("Expression is not a string");
     }
 }

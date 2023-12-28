@@ -7,6 +7,7 @@ import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.types.RefType;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.RefValue;
+import com.assignment2.robi.models.types.IType;
 
 public class NewStatement implements IStatement 
 {
@@ -42,5 +43,15 @@ public class NewStatement implements IStatement
     public String toString()
     {
         return "new(" + this.var + ", " + this.expr.toString() + ")";
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        IType typevar = typeEnv.get(this.var);
+        IType typexp = this.expr.typecheck(typeEnv);
+        if (typevar.equals(new RefType(typexp)))
+            return typeEnv;
+        else
+            throw new MyException("New: right hand side and left hand side have different types.");
     }
 }

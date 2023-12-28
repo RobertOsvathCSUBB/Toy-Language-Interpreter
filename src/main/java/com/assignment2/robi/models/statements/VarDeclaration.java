@@ -29,4 +29,10 @@ public class VarDeclaration implements IStatement
         symTable.add(this.name, this.type.getDefaultValue());
         return null;
     }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        typeEnv.add(this.name, this.type);
+        return typeEnv;
+    }
 }

@@ -5,6 +5,7 @@ import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.types.IntType;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.IntValue;
+import com.assignment2.robi.models.types.IType;
 
 public class ArithExpression implements IExpression
 {
@@ -18,21 +19,6 @@ public class ArithExpression implements IExpression
         this.right = right;
         this.op = op;
     }
-
-    // ask about this in the lab
-    // @Override
-    // public Object clone()
-    // {
-    //     ArithExpression copy = null;
-    //     try {
-    //         return super.clone();
-    //     }
-    //     catch (CloneNotSupportedException e) {
-    //         copy = new ArithExpression(this.left, this.right, this.op);
-    //     }
-    //     copy.left = (IExpression)this.left.clone();
-    //     copy.right = (IExpression)this.right.clone();
-    // }
 
     public IValue evaluate(IMap<String, IValue> table, IHeap heap) throws MyException
     {
@@ -69,5 +55,27 @@ public class ArithExpression implements IExpression
     public String toString()
     {
         return left.toString()+ " " + op + " " + right.toString();
+    }
+
+    public IType typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+            IType type1, type2;
+            type1 = left.typecheck(typeEnv);
+            type2 = right.typecheck(typeEnv);
+            if (type1.equals(new IntType()))
+            {
+                if (type2.equals(new IntType()))
+                {
+                    return new IntType();
+                }
+                else
+                {
+                    throw new MyException("Second operand is not an integer");
+                }
+            }
+            else 
+            {
+                throw new MyException("First operand is not an integer");
+            }
     }
 }

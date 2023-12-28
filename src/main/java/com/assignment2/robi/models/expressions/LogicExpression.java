@@ -1,11 +1,11 @@
 package com.assignment2.robi.models.expressions;
-
 import com.assignment2.robi.models.ADTs.IHeap;
 import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.types.BoolType;
 import com.assignment2.robi.models.values.BoolValue;
 import com.assignment2.robi.models.values.IValue;
+import com.assignment2.robi.models.types.IType;
 
 public class LogicExpression implements IExpression 
 {
@@ -45,5 +45,27 @@ public class LogicExpression implements IExpression
     public String toString()
     {
         return left.toString() + " " + op + " " + right.toString();
-    }    
+    }   
+    
+    public IType typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+            IType type1, type2;
+            type1 = left.typecheck(typeEnv);
+            type2 = right.typecheck(typeEnv);
+            if (type1.equals(new BoolType()))
+            {
+                if (type2.equals(new BoolType()))
+                {
+                    return new BoolType();
+                }
+                else
+                {
+                    throw new MyException("Second operand is not an integer");
+                }
+            }
+            else 
+            {
+                throw new MyException("First operand is not an integer");
+            }
+    }
 }

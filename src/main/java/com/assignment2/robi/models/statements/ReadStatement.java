@@ -1,7 +1,6 @@
 package com.assignment2.robi.models.statements;
 import java.io.BufferedReader;
 import java.io.IOException;
-
 import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.exception.MyException;
 import com.assignment2.robi.models.expressions.IExpression;
@@ -11,6 +10,7 @@ import com.assignment2.robi.models.types.StringType;
 import com.assignment2.robi.models.values.IValue;
 import com.assignment2.robi.models.values.IntValue;
 import com.assignment2.robi.models.values.StringValue;
+import com.assignment2.robi.models.types.IType;
 
 public class ReadStatement implements IStatement 
 {
@@ -69,5 +69,14 @@ public class ReadStatement implements IStatement
         }
 
         return null;
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        IType typexp = this.exp.typecheck(typeEnv);
+        if (typexp.equals(new StringType()))
+            return typeEnv;
+        else
+            throw new MyException("Read file: expression is not a string.");
     }
 }

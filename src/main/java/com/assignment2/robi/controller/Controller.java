@@ -76,18 +76,18 @@ public class Controller
     public void allStep()
     {
         this.executor = Executors.newFixedThreadPool(2);
-        List<PrgState> prgList = removeCompletedPrg(this.repo.getPrgList());
+        List<PrgState> prgList = this.removeCompletedPrg(this.repo.getPrgList());
         while (!prgList.isEmpty())
         {
             IHeap heap = this.repo.getPrgList().get(0).getHeap();
-            heap.setContent(garbageCollector(getAddrFromSymTables(), heap));
+            heap.setContent(this.garbageCollector(this.getAddrFromSymTables(), heap));
             try {
                 this.oneStepForAll(prgList);
             } catch (MyException e) {
                 System.out.println(e.getMessage());
                 break;
             }
-            prgList = removeCompletedPrg(this.repo.getPrgList());
+            prgList = this.removeCompletedPrg(this.repo.getPrgList());
         }
         this.executor.shutdownNow();
         this.repo.setPrgList(prgList);

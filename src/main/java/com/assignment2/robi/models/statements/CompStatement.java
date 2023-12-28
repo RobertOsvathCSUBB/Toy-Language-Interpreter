@@ -1,7 +1,9 @@
 package com.assignment2.robi.models.statements;
 import com.assignment2.robi.models.state.PrgState;
+import com.assignment2.robi.models.ADTs.IMap;
 import com.assignment2.robi.models.ADTs.IStack;
 import com.assignment2.robi.models.exception.MyException;
+import com.assignment2.robi.models.types.IType;
 
 public class CompStatement implements IStatement {
     private IStatement first;
@@ -21,5 +23,9 @@ public class CompStatement implements IStatement {
 
     public String toString() {
         return this.first.toString() + " | " + this.second.toString();
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException {
+        return this.second.typecheck(this.first.typecheck(typeEnv));
     }
 }

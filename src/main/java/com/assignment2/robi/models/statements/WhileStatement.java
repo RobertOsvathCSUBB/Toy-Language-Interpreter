@@ -8,6 +8,7 @@ import com.assignment2.robi.models.state.PrgState;
 import com.assignment2.robi.models.types.BoolType;
 import com.assignment2.robi.models.values.BoolValue;
 import com.assignment2.robi.models.values.IValue;
+import com.assignment2.robi.models.types.IType;
 
 public class WhileStatement implements IStatement 
 {
@@ -49,5 +50,17 @@ public class WhileStatement implements IStatement
         {
             throw new MyException(e.getMessage());
         }
+    }
+
+    public IMap<String, IType> typecheck(IMap<String, IType> typeEnv) throws MyException
+    {
+        IType typexp = this.exp.typecheck(typeEnv);
+        if (typexp.equals(new BoolType()))
+        {
+            this.stmt.typecheck(typeEnv.clone());
+            return typeEnv;
+        }
+        else
+            throw new MyException("The condition of WHILE isn't of type bool");
     }
 }

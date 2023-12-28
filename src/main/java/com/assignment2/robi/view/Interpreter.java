@@ -27,6 +27,7 @@ import com.assignment2.robi.models.statements.VarDeclaration;
 import com.assignment2.robi.models.statements.WhileStatement;
 import com.assignment2.robi.models.statements.WriteHeap;
 import com.assignment2.robi.models.types.BoolType;
+import com.assignment2.robi.models.types.IType;
 import com.assignment2.robi.models.types.IntType;
 import com.assignment2.robi.models.types.RefType;
 import com.assignment2.robi.models.types.StringType;
@@ -200,36 +201,104 @@ public class Interpreter
                     )
                 )
         );
-        
-        PrgState state1 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program1);
-        PrgState state2 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program2);
-        PrgState state3 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program3);
-        PrgState state4 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program4);
-        PrgState state5 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program5);
-        PrgState state6 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program6);
-        PrgState state7 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program7);
-        PrgState state8 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program8);
 
         List<MemRepository> repoList = new ArrayList<MemRepository>();
-        for (int i = 0; i < 8; i++)
-        {
+        List<Controller> ctrlList = new ArrayList<Controller>();
+        
+        try {
+            program1.typecheck(new MyMap<String, IType>());
+            PrgState state1 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program1);
             repoList.add(new MemRepository());
-            repoList.get(i).setLogFile("program" + Integer.toString(i + 1) + ".txt");
+            repoList.get(0).add(state1);
+            repoList.get(0).setLogFile("program1.txt");
+            ctrlList.add(new Controller(repoList.get(0)));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
-        repoList.get(0).add(state1);
-        repoList.get(1).add(state2);
-        repoList.get(2).add(state3);
-        repoList.get(3).add(state4);
-        repoList.get(4).add(state5);
-        repoList.get(5).add(state6);
-        repoList.get(6).add(state7);
-        repoList.get(7).add(state8);
+        try {
+            program2.typecheck(new MyMap<String, IType>());
+            PrgState state2 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program2);
+            repoList.add(new MemRepository());
+            repoList.get(1).add(state2);
+            repoList.get(1).setLogFile("program2.txt");
+            ctrlList.add(new Controller(repoList.get(1)));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-        List<Controller> ctrlList = new ArrayList<Controller>();
-        for (int i = 0; i < 8; i++)
-        {
-            ctrlList.add(new Controller(repoList.get(i)));
+        try {
+            program3.typecheck(new MyMap<String, IType>());
+            PrgState state3 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program3);
+            repoList.add(new MemRepository());
+            repoList.get(2).add(state3);
+            repoList.get(2).setLogFile("program3.txt");
+            ctrlList.add(new Controller(repoList.get(2)));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            program4.typecheck(new MyMap<String, IType>());
+            PrgState state4 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program4);
+            repoList.add(new MemRepository());
+            repoList.get(3).add(state4);
+            repoList.get(3).setLogFile("program4.txt");
+            ctrlList.add(new Controller(repoList.get(3)));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            program5.typecheck(new MyMap<String, IType>());
+            PrgState state5 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program5);
+            repoList.add(new MemRepository());
+            repoList.get(4).add(state5);
+            repoList.get(4).setLogFile("program5.txt");
+            ctrlList.add(new Controller(repoList.get(4)));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            program6.typecheck(new MyMap<String, IType>());
+            PrgState state6 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program6);
+            repoList.add(new MemRepository());
+            repoList.get(5).add(state6);
+            repoList.get(5).setLogFile("program6.txt");
+            ctrlList.add(new Controller(repoList.get(5)));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            program7.typecheck(new MyMap<String, IType>());
+            PrgState state7 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program7);
+            repoList.add(new MemRepository());
+            repoList.get(6).add(state7);
+            repoList.get(6).setLogFile("program7.txt");
+            ctrlList.add(new Controller(repoList.get(6)));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            program8.typecheck(new MyMap<String, IType>());
+            PrgState state8 = new PrgState(new MyStack<IStatement>(), new MyMap<String, IValue>(), new MyList<IValue>(), new MyMap<StringValue, BufferedReader>(), new MyHeap(), program8);
+            repoList.add(new MemRepository());
+            repoList.get(7).add(state8);
+            repoList.get(7).setLogFile("program8.txt");
+            ctrlList.add(new Controller(repoList.get(7)));
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
         TextMenu menu = new TextMenu();
